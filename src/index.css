@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --theme-primary: #00ff88;
+    --theme-primary-rgb: 0, 255, 136;
+    --theme-secondary: #00c8ff;
+    --theme-secondary-rgb: 0, 200, 255;
+    --theme-glow: rgba(0, 255, 136, 0.4);
+    --theme-bg-subtle: rgba(0, 255, 136, 0.05);
+  }
+
+  [data-theme="cyan"] {
+    --theme-primary: #06b6d4;
+    --theme-primary-rgb: 6, 182, 212;
+    --theme-secondary: #3b82f6;
+    --theme-secondary-rgb: 59, 130, 246;
+    --theme-glow: rgba(6, 182, 212, 0.4);
+    --theme-bg-subtle: rgba(6, 182, 212, 0.05);
+  }
+
+  [data-theme="purple"] {
+    --theme-primary: #c084fc;
+    --theme-primary-rgb: 192, 132, 252;
+    --theme-secondary: #f43f5e;
+    --theme-secondary-rgb: 244, 63, 94;
+    --theme-glow: rgba(192, 132, 252, 0.4);
+    --theme-bg-subtle: rgba(192, 132, 252, 0.05);
+  }
+
+  [data-theme="amber"] {
+    --theme-primary: #fbbf24;
+    --theme-primary-rgb: 251, 191, 36;
+    --theme-secondary: #f97316;
+    --theme-secondary-rgb: 249, 115, 22;
+    --theme-glow: rgba(251, 191, 36, 0.4);
+    --theme-bg-subtle: rgba(251, 191, 36, 0.05);
+  }
+
+  [data-theme="crimson"] {
+    --theme-primary: #ff4655;
+    --theme-primary-rgb: 255, 70, 85;
+    --theme-secondary: #dc2626;
+    --theme-secondary-rgb: 220, 38, 38;
+    --theme-glow: rgba(255, 70, 85, 0.4);
+    --theme-bg-subtle: rgba(255, 70, 85, 0.05);
+  }
+
+  [data-theme="stealth"] {
+    --theme-primary: #38bdf8;
+    --theme-primary-rgb: 56, 189, 248;
+    --theme-secondary: #94a3b8;
+    --theme-secondary-rgb: 148, 163, 184;
+    --theme-glow: rgba(56, 189, 248, 0.3);
+    --theme-bg-subtle: rgba(56, 189, 248, 0.04);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+.font-orbitron {
+  font-family: 'Orbitron', monospace, sans-serif;
+}
+
+.font-rajdhani {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom Cyberpunk Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #030712;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-primary);
+}
+
+/* Scanline Effect */
+.scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+  pointer-events: none;
+}
+
+/* Glow Utilities */
+.text-glow {
+  text-shadow: 0 0 12px var(--theme-glow), 0 0 24px rgba(var(--theme-primary-rgb), 0.3);
+}
+
+.box-glow {
+  box-shadow: 0 0 20px var(--theme-glow), inset 0 0 15px rgba(var(--theme-primary-rgb), 0.05);
+}
+
+.border-glow-subtle {
+  border-color: rgba(var(--theme-primary-rgb), 0.25);
+  box-shadow: 0 0 15px rgba(var(--theme-primary-rgb), 0.08);
+}
+
+/* Animated Grid Background */
+.cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Keyframes */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 8px var(--theme-glow));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 20px var(--theme-primary));
+  }
+}
+
+@keyframes radar-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glitch-anim {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(2px, -1px); }
+  60% { transform: translate(-1px, 2px); }
+  80% { transform: translate(1px, -2px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+.animate-radar {
+  animation: radar-sweep 4s linear infinite;
+}
+
+.shimmer-btn {
+  background: linear-gradient(
+    90deg,
+    rgba(var(--theme-primary-rgb), 0.15) 0%,
+    rgba(var(--theme-primary-rgb), 0.4) 50%,
+    rgba(var(--theme-primary-rgb), 0.15) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
